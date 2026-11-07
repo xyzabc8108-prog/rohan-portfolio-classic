@@ -22,6 +22,12 @@ check(home.includes('id="opening"')&&home.includes('opening-skip'),'Opening / sk
 check(js.includes('setTimeout(finishIntro,5000)')&&js.includes('rc-classic-seen'),'Intro duration and session rule');
 check(js.includes("e.key==='Escape'"),'Escape shortcut');
 check(css.includes('opening-leave')&&css.includes('prefers-reduced-motion'),'Transition and accessible fallback');
+check(css.includes('CLASSIC MARKED-ELEMENT MOTION')&&css.includes('classic-hero-r')&&css.includes('classic-hero-c'),'Subtle RC hero animation');
+check(css.includes('classic-symbol-float')&&css.includes('classic-outline-shift'),'Project monogram and border motion');
+check(css.includes('classic-heading-arrive')&&css.includes('classic-heading-line'),'Approach-heading reveal and underline');
+check(js.includes("document.querySelectorAll('.project-graphic')")&&js.includes("IntersectionObserver"),'Scroll-triggered motion is efficient');
+check(css.includes('@media (prefers-reduced-motion:reduce)')&&js.includes('if(!reduced.matches)'),'Reduced-motion opt out for new effects');
+
 check(!/internship/i.test(home)&&!/internship/i.test(read('cv.html')),'No internship promotion on Classic or CV');
 check(home.includes('class="evidence-summary"'),'Research evidence summary');
 check(home.includes('social-preview.png')&&home.includes('twitter:card'),'Social preview metadata');

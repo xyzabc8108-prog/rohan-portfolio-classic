@@ -204,3 +204,96 @@ a,button{touch-action:manipulation}
 /* The top-of-page anchor is in normal flow, outside the sticky header. */
 .top-anchor{display:block;height:0;position:relative}
 .footer a[data-back-to-top]{display:inline-flex;align-items:center;min-height:44px;cursor:pointer}
+
+
+/* CLASSIC MARKED-ELEMENT MOTION — soft movement on the hero RC artwork,
+   five project monograms and the "Honest about the process" heading.
+   Restrained, transform-only effects: no glow, no canvas, no dependencies. */
+@media (prefers-reduced-motion:no-preference) {
+  /* Hero: very slow opposing movement and a gently turning outline. */
+  .hero-art-center>span{transform-origin:50% 50%;animation:classic-hero-r 8s ease-in-out infinite}
+  .hero-art-center>b{transform-origin:50% 50%;animation:classic-hero-c 9.5s ease-in-out infinite}
+  .hero-arch{animation:classic-hero-arch 28s ease-in-out infinite}
+  @keyframes classic-hero-r {
+    0%,100%{transform:rotate(-9deg) translateX(-11%) translateY(0)}
+    50%{transform:rotate(-6deg) translateX(-11%) translateY(-7px)}
+  }
+  @keyframes classic-hero-c {
+    0%,100%{transform:translateY(0) rotate(9deg)}
+    50%{transform:translateY(5px) rotate(6deg)}
+  }
+  @keyframes classic-hero-arch {
+    0%,100%{transform:rotate(12deg) translateY(0)}
+    50%{transform:rotate(19deg) translateY(-4px)}
+  }
+
+  /* Start motion only as the marked illustrations scroll into view. */
+  .project-graphic .graphic-symbol{
+    transform-origin:50% 55%;
+    transition:transform .42s cubic-bezier(.2,.7,.25,1);
+  }
+  .project-graphic.is-in-view .graphic-symbol{
+    animation:classic-symbol-float var(--float-duration,7s) ease-in-out var(--float-delay,0s) infinite;
+  }
+  .project-graphic.is-in-view::before{
+    animation:classic-outline-shift 12s ease-in-out infinite;
+  }
+  .project-graphic.is-in-view::after{
+    animation:classic-orbit-shift 15s ease-in-out infinite;
+  }
+  .project-item:nth-child(2) .project-graphic{--float-duration:8.2s;--float-delay:-2s}
+  .project-item:nth-child(3) .project-graphic{--float-duration:6.6s;--float-delay:-3s}
+  .project-item:nth-child(4) .project-graphic{--float-duration:8.8s;--float-delay:-1s}
+  .project-item:nth-child(5) .project-graphic{--float-duration:7.7s;--float-delay:-4s}
+  @keyframes classic-symbol-float{
+    0%,100%{transform:translate3d(0,0,0) rotate(-1deg)}
+    50%{transform:translate3d(0,-7px,0) rotate(1.5deg)}
+  }
+  @keyframes classic-outline-shift{
+    0%,100%{transform:rotate(-7deg) translateY(0)}
+    50%{transform:rotate(-3deg) translateY(3px)}
+  }
+  @keyframes classic-orbit-shift{
+    0%,100%{transform:translate(27%,12%) scale(1)}
+    50%{transform:translate(22%,7%) scale(1.07)}
+  }
+  /* Hover/focus takes priority over idle motion and visibly acknowledges a link. */
+  .project-graphic:is(:hover,:focus-visible) .graphic-symbol{
+    animation:none;
+    transform:translate3d(0,-5px,0) rotate(-2deg) scale(1.045);
+  }
+  .project-graphic:is(:hover,:focus-visible)::before{animation-play-state:paused}
+  .project-graphic:is(:hover,:focus-visible)::after{animation-play-state:paused}
+
+  /* Heading moves once on arrival, underline grows gently below bronze text. */
+  .approach-section h2.is-in-view{
+    animation:classic-heading-arrive 1.05s cubic-bezier(.18,.75,.2,1) both;
+  }
+  .approach-section h2 em{display:inline-block;position:relative}
+  .approach-section h2 em::after{
+    content:"";position:absolute;left:0;right:0;bottom:-9px;height:2px;
+    background:#d0af85;transform:scaleX(0);transform-origin:left center;
+  }
+  .approach-section h2.is-in-view em::after{
+    animation:classic-heading-line .95s cubic-bezier(.22,.7,.25,1) .55s both;
+  }
+  @keyframes classic-heading-arrive{
+    from{opacity:.3;transform:translate3d(0,18px,0)}
+    to{opacity:1;transform:translate3d(0,0,0)}
+  }
+  @keyframes classic-heading-line{
+    from{transform:scaleX(0)}
+    to{transform:scaleX(1)}
+  }
+}
+@media (hover:none){
+  /* Touch users see gentle idle motion but no simulated hover treatment. */
+  .project-graphic:active .graphic-symbol{transform:translate3d(0,-3px,0)}
+}
+@media (prefers-reduced-motion:reduce){
+  .hero-art-center>span,.hero-art-center>b,.hero-arch,
+  .project-graphic .graphic-symbol,.project-graphic::before,.project-graphic::after,
+  .approach-section h2,.approach-section h2 em::after{
+    animation:none!important;transition:none!important;
+  }
+}

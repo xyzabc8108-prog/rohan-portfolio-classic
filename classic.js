@@ -71,6 +71,22 @@
       document.querySelector('.wordmark')?.focus({preventScroll:true});
     });
   });
+  /* Observe only the marked artwork and heading; never affect intro timing. */
+  if(!reduced.matches){
+    const marked=[...document.querySelectorAll('.project-graphic'),document.querySelector('.approach-section h2')].filter(Boolean);
+    if('IntersectionObserver' in window){
+      const reveal=new IntersectionObserver(entries=>{
+        entries.forEach(entry=>{
+          if(!entry.isIntersecting)return;
+          entry.target.classList.add('is-in-view');
+          reveal.unobserve(entry.target);
+        });
+      },{threshold:.12,rootMargin:'0px 0px 30px 0px'});
+      marked.forEach(el=>reveal.observe(el));
+    }else{
+      marked.forEach(el=>el.classList.add('is-in-view'));
+    }
+  }
   document.querySelectorAll('.year').forEach(el=>el.textContent=String(new Date().getFullYear()));
   document.querySelector('.copy-email')?.addEventListener('click',async()=>{
     const feedback=document.querySelector('.copy-feedback');
