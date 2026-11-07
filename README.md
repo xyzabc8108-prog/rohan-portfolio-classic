@@ -49,3 +49,13 @@ For local testing, open `index.html` in a browser or serve this folder with any 
 ## Maintenance
 
 Changes to this repository affect **only the Classic portfolio**. The Digital Lab repository is separate.
+
+## Classic improvements — November 2026
+
+- Professional CV reformatted for reading and A4 printing, with project statuses and no internship pitch.
+- Homepage and case studies now explain documented evidence, limitations and screenshot availability rather than implying decorative illustrations are tests.
+- Added mobile-size and focus refinements, reduced-motion behavior, dedicated **1200 × 630 PNG social preview**, Open Graph and Twitter cards, `robots.txt`, and an XML sitemap.
+- GitHub Actions runs `node check.mjs` automatically to validate source claims, navigation and local links.
+- This repository is completely independent from Digital Lab; no shared assets or navigation links.
+
+**Evidence policy:** Genuine product screenshots are not yet available in the connected project source. None have been fabricated. Where future screenshots are used, their provenance and rights must be checked.
