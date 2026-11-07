@@ -3,7 +3,7 @@ import {dirname,resolve,join} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {execFileSync} from 'node:child_process';
 const root=dirname(fileURLToPath(import.meta.url));
-const paths=['index.html','classic.css','classic.js','cv.html','favicon.svg','.nojekyll','README.md','projects/deepfake.html','projects/market.html','projects/rovan.html','projects/automoto.html','projects/ashok.html'];
+const paths=['index.html','classic.css','classic.js','cv.html','favicon.svg','social-preview.png','robots.txt','sitemap.xml','.nojekyll','README.md','projects/deepfake.html','projects/market.html','projects/rovan.html','projects/automoto.html','projects/ashok.html'];
 let count=0;
 function check(test,message){count++;if(!test)throw new Error('FAIL: '+message)}
 for(const p of paths)check(existsSync(join(root,p)),'Required file '+p);
@@ -18,7 +18,9 @@ check(home.includes('id="opening"')&&home.includes('opening-skip'),'Opening / sk
 check(js.includes('setTimeout(finishIntro,5000)')&&js.includes('rc-classic-seen'),'Intro duration and session rule');
 check(js.includes("e.key==='Escape'"),'Escape shortcut');
 check(css.includes('opening-leave')&&css.includes('prefers-reduced-motion'),'Transition and accessible fallback');
-check(!/internship/i.test(home),'No internship section');
+check(!/internship/i.test(home)&&!/internship/i.test(read('cv.html')),'No internship promotion on Classic or CV');
+check(home.includes('class="evidence-summary"'),'Research evidence summary');
+check(home.includes('social-preview.png')&&home.includes('twitter:card'),'Social preview metadata');
 check(!/digital forensic/i.test(home),'No unsupported specialization');
 check(!/ashokenterprise\.com/i.test(home),'No unverified Ashok public domain');
 for(const p of paths.filter(x=>x.endsWith('.html'))){

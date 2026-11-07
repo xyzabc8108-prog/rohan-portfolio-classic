@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://xyzabc8108-prog.github.io/rohan-portfolio-classic/sitemap.xml
