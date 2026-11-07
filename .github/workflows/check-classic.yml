@@ -18,3 +18,5 @@ jobs:
           node-version: '22'
       - name: Validate links, accessibility labels, evidence and JS syntax
         run: node check.mjs
+      - name: Audit landmarks, responsive structure and performance budgets
+        run: node audit-ui.mjs
