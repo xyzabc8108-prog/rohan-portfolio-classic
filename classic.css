@@ -297,3 +297,14 @@ a,button{touch-action:manipulation}
     animation:none!important;transition:none!important;
   }
 }
+
+/* Evidence log link, mobile tap targets, and off-screen animation savings. */
+.log-cta{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin:18px 0 0;padding:18px 0;border-top:1px solid var(--line)}
+.log-cta a{display:inline-flex;align-items:center;min-height:44px;border-bottom:1px solid var(--bronze);font:700 11px/1.6 var(--sans);color:#5a4b35}
+.log-cta span{font:500 10px/1.6 var(--sans);color:var(--muted)}
+:where(a,button,input):focus-visible{outline:2px solid var(--bronze);outline-offset:4px}
+html.tab-hidden .hero-art-center>span,html.tab-hidden .hero-art-center>b,html.tab-hidden .hero-arch,html.tab-hidden .project-graphic .graphic-symbol{animation-play-state:paused!important}
+.project-graphic:not(.is-in-view) .graphic-symbol,.project-graphic:not(.is-in-view)::before,.project-graphic:not(.is-in-view)::after{animation-play-state:paused!important}
+@media(max-width:920px){.site-nav a{min-height:44px;display:flex;align-items:center}}
+@media(max-width:650px){.log-cta{flex-direction:column;align-items:start}.log-cta span{font-size:9px}.hero-actions a,.contact-links a{min-height:44px;display:inline-flex;align-items:center}.contact-email{overflow-wrap:anywhere}.case-aside a{min-height:40px}}
+@media(hover:none){.project-graphic:hover{filter:none}}

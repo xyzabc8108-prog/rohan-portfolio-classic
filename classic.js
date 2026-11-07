@@ -71,22 +71,31 @@
       document.querySelector('.wordmark')?.focus({preventScroll:true});
     });
   });
-  /* Observe only the marked artwork and heading; never affect intro timing. */
+  /* Motion only runs on project art while it is visible; the heading reveals once. */
   if(!reduced.matches){
-    const marked=[...document.querySelectorAll('.project-graphic'),document.querySelector('.approach-section h2')].filter(Boolean);
+    const graphics=[...document.querySelectorAll('.project-graphic')];
+    const heading=document.querySelector('.approach-section h2');
     if('IntersectionObserver' in window){
       const reveal=new IntersectionObserver(entries=>{
-        entries.forEach(entry=>{
-          if(!entry.isIntersecting)return;
-          entry.target.classList.add('is-in-view');
-          reveal.unobserve(entry.target);
-        });
+        for(const entry of entries){
+          if(entry.target===heading){
+            if(entry.isIntersecting){
+              heading.classList.add('is-in-view');
+              reveal.unobserve(heading);
+            }
+          }else{
+            entry.target.classList.toggle('is-in-view',entry.isIntersecting);
+          }
+        }
       },{threshold:.12,rootMargin:'0px 0px 30px 0px'});
-      marked.forEach(el=>reveal.observe(el));
+      graphics.forEach(el=>reveal.observe(el));
+      if(heading)reveal.observe(heading);
     }else{
-      marked.forEach(el=>el.classList.add('is-in-view'));
+      graphics.forEach(el=>el.classList.add('is-in-view'));
+      heading?.classList.add('is-in-view');
     }
   }
+  document.addEventListener('visibilitychange',()=>root.classList.toggle('tab-hidden',document.hidden));
   document.querySelectorAll('.year').forEach(el=>el.textContent=String(new Date().getFullYear()));
   document.querySelector('.copy-email')?.addEventListener('click',async()=>{
     const feedback=document.querySelector('.copy-feedback');
