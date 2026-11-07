@@ -13,7 +13,11 @@ check((home.match(/class="project-item"/g)||[]).length===5,'Five project entries
 check(home.includes('Most implementation')||home.includes('AI tools produce most'),'Disclose AI assistance');
 check(home.includes('research and broader validation are not complete'),'Research unfinished');
 check(!home.includes('href="../"'),'No links to parent Digital Lab');
-check(home.includes('href="cv.html"')&&home.includes('href="favicon.svg"'),'Independent CV and favicon paths');
+check(home.includes('href="cv.html"')&&home.includes('href="favicon.svg?v=2"'),'Independent CV and refreshed favicon');
+check(home.includes('<div id="top" class="top-anchor"')&&!home.includes('class="site-header" id="top"'),'Top anchor outside sticky header');
+check(home.includes('href="#top" data-back-to-top'),'Back-to-top markup exists');
+check(js.includes("querySelectorAll('[data-back-to-top]')")&&js.includes('window.scrollTo({top:0,left:0'),'JS explicitly scrolls to page origin');
+check(read('favicon.svg').includes('R.C — Rohan Chhaya')&&!read('favicon.svg').includes('#50e4ff'),'Classic favicon uses R.C branding');
 check(home.includes('id="opening"')&&home.includes('opening-skip'),'Opening / skip controls');
 check(js.includes('setTimeout(finishIntro,5000)')&&js.includes('rc-classic-seen'),'Intro duration and session rule');
 check(js.includes("e.key==='Escape'"),'Escape shortcut');
@@ -36,6 +40,9 @@ for(const p of paths.filter(x=>x.endsWith('.html'))){
   check(text.includes('manual testing has been limited'),'Project limitations '+p);
   check(!text.includes('DIGITAL LAB'),'No link to original Digital Lab '+p);
   check(text.includes('not a software screenshot'),'No fake screenshot '+p);
+  check(text.includes('href="#top" data-back-to-top'),'Back to Top on '+p);
+  check(text.indexOf('id="top"')<text.indexOf('<header class="site-header"'),'Non-sticky top anchor on '+p);
+  check(text.includes('href="../favicon.svg?v=2"'),'Updated case favicon on '+p);
  }
 }
 execFileSync(process.execPath,['--check',join(root,'classic.js')],{stdio:'pipe'});

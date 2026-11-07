@@ -1,1 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#50e4ff"/><stop offset="1" stop-color="#8476ff"/></linearGradient></defs><rect width="64" height="64" rx="14" fill="#08172a"/><path d="M14 49V15h18c10 0 16 5 16 12 0 5-3 9-8 11l10 11H37L27 38h-2v11zm11-21h7c3 0 5-1 5-4s-2-4-5-4h-7z" fill="url(#g)"/><circle cx="53" cy="49" r="4" fill="#ffb86b"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+<title>R.C — Rohan Chhaya</title>
+<rect x="1" y="1" width="62" height="62" rx="13" fill="#263235" stroke="#947551" stroke-width="2"/>
+<g font-family="Arial,Helvetica,sans-serif" font-size="32" font-weight="700">
+<text x="8" y="43" fill="#f6f4ee">R</text>
+<text x="39" y="43" fill="#f6f4ee">C</text>
+</g>
+<circle cx="33" cy="41" r="3" fill="#c7a984"/>
+</svg>

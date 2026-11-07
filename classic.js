@@ -63,6 +63,14 @@
   });
   nav?.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeMenu));
   window.addEventListener('resize',()=>{if(innerWidth>920)closeMenu()},{passive:true});
+  /* Always scroll to the actual document origin: the sticky header is not a reliable anchor. */
+  document.querySelectorAll('[data-back-to-top]').forEach(link=>{
+    link.addEventListener('click',event=>{
+      event.preventDefault();
+      window.scrollTo({top:0,left:0,behavior:reduced.matches?'auto':'smooth'});
+      document.querySelector('.wordmark')?.focus({preventScroll:true});
+    });
+  });
   document.querySelectorAll('.year').forEach(el=>el.textContent=String(new Date().getFullYear()));
   document.querySelector('.copy-email')?.addEventListener('click',async()=>{
     const feedback=document.querySelector('.copy-feedback');
