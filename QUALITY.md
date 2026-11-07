@@ -4,7 +4,7 @@ This is a source-level verification record for the standalone Classic portfolio.
 
 ## What was checked
 
-- Eight HTML pages: homepage, project progress log, CV and five case studies.
+- Seven HTML pages: homepage, project progress log, CV and four case studies.
 - Language and mobile viewport metadata, one main landmark and main heading per page, skip links and unique IDs.
 - Role-based illustration labels, image alt attributes, safe new-tab links and working fragment targets.
 - Existing cinematic intro, keyboard skip, replay and reduced-motion protection.

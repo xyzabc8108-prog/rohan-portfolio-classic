@@ -8,8 +8,8 @@ const here=dirname(fileURLToPath(import.meta.url));
 const root=existsSync(join(here,'index.html'))?here:resolve(here,'..');
 const classic=existsSync(join(root,'classic.css'));
 const pages=classic
- ? ['index.html','project-log.html','cv.html','projects/deepfake.html','projects/market.html','projects/rovan.html','projects/automoto.html','projects/ashok.html']
- : ['index.html','project-log.html','cv.html','projects/deepfake-detection.html','projects/indian-market-lab.html','projects/rovan.html','projects/automoto-studio.html','projects/ashok-enterprise.html'];
+ ? ['index.html','project-log.html','cv.html','projects/deepfake.html','projects/market.html','projects/rovan.html','projects/automoto.html']
+ : ['index.html','project-log.html','cv.html','projects/deepfake-detection.html','projects/indian-market-lab.html','projects/rovan.html','projects/automoto-studio.html'];
 const scripts=classic?['classic.js']:['v5.js','intro.js'];
 const styles=classic?['classic.css','project-log.css']:['v5.css','profile.css','project-log.css'];
 let assertions=0,fragmentLinks=0,externalLinks=0;

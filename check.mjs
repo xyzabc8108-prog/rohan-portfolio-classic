@@ -3,13 +3,13 @@ import {dirname,resolve,join} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {execFileSync} from 'node:child_process';
 const root=dirname(fileURLToPath(import.meta.url));
-const paths=['index.html','classic.css','classic.js','cv.html','favicon.svg','project-log.html','project-log.css','social-preview.png','robots.txt','sitemap.xml','.nojekyll','README.md','projects/deepfake.html','projects/market.html','projects/rovan.html','projects/automoto.html','projects/ashok.html'];
+const paths=['index.html','classic.css','classic.js','cv.html','favicon.svg','project-log.html','project-log.css','social-preview.png','robots.txt','sitemap.xml','.nojekyll','README.md','projects/deepfake.html','projects/market.html','projects/rovan.html','projects/automoto.html'];
 let count=0;
 function check(test,message){count++;if(!test)throw new Error('FAIL: '+message)}
 for(const p of paths)check(existsSync(join(root,p)),'Required file '+p);
 const read=p=>readFileSync(join(root,p),'utf8');
 const home=read('index.html'),css=read('classic.css'),js=read('classic.js');
-check((home.match(/class="project-item"/g)||[]).length===5,'Five project entries');
+check((home.match(/class="project-item"/g)||[]).length===4,'Four project entries');
 check(home.includes('Most implementation')||home.includes('AI tools produce most'),'Disclose AI assistance');
 check(home.includes('research and broader validation are not complete'),'Research unfinished');
 check(!home.includes('href="../"'),'No links to parent Digital Lab');
@@ -31,7 +31,7 @@ check(css.includes('@media (prefers-reduced-motion:reduce)')&&js.includes('if(!r
 check(!/internship/i.test(home)&&!/internship/i.test(read('cv.html')),'No internship promotion on Classic or CV');
 check(home.includes('class="evidence-summary"'),'Research evidence summary');
 check(home.includes('href="project-log.html"')&&read('cv.html').includes('href="project-log.html"'),'Progress log linked from homepage and CV');
-check((read('project-log.html').match(/class="log-record"/g)||[]).length===5,'All five projects on progress page');
+check((read('project-log.html').match(/class="log-record"/g)||[]).length===4,'All four projects on progress page');
 check(read('project-log.html').includes('NO FABRICATED SCREENSHOTS'),'Truthful evidence standard');
 check(js.includes('classList.toggle(\'is-in-view\',entry.isIntersecting)'),'Off-screen motion paused');
 check(js.includes('visibilitychange')&&css.includes('html.tab-hidden'),'Background animations paused');
@@ -39,7 +39,7 @@ check(css.includes('.log-cta')&&css.includes('min-height:44px'),'Mobile-friendly
 check(Buffer.byteLength(css,'utf8')<65000&&Buffer.byteLength(js,'utf8')<12000,'CSS and JS size budgets');
 check(home.includes('social-preview.png')&&home.includes('twitter:card'),'Social preview metadata');
 check(!/digital forensic/i.test(home),'No unsupported specialization');
-check(!/ashokenterprise\.com/i.test(home),'No unverified Ashok public domain');
+
 for(const p of paths.filter(x=>x.endsWith('.html'))){
  const text=read(p);
  for(const match of text.matchAll(/(?:href|src)="([^"]+)"/g)){

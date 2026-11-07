@@ -30,7 +30,7 @@ For local testing, open `index.html` in a browser or serve this folder with any 
 - `classic.js` — opening transition, skip/replay, menu and copy-email interactions
 - `cv.html` — self-contained public CV
 - `favicon.svg` — local favicon
-- `projects/` — five standalone project case studies
+- `projects/` — four standalone project case studies
 - `.nojekyll` — static Pages compatibility
 - `check.mjs` — file, local-link and disclosure checks
 
@@ -42,7 +42,6 @@ For local testing, open `index.html` in a browser or serve this folder with any 
 - Indian Market Lab is a safety-restricted educational research demo.
 - AutoMoto Studio remains owner-only and unfinished.
 - ROVAN is a local Windows assistant prototype.
-- Ashok Enterprise has a private codebase; no public company domain is claimed.
 - No internship promotion or digital-forensics specialization.
 - Project illustrations are decorative and explicitly not application screenshots.
 

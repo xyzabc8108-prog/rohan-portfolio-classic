@@ -44,7 +44,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--bronze);outline-off
 .project-item{display:grid;grid-template-columns:minmax(240px,.78fr) minmax(0,1.22fr);align-items:center;gap:clamp(30px,5vw,85px);padding:33px 0;border-bottom:1px solid var(--line)}
 .project-graphic{position:relative;overflow:hidden;min-height:280px;display:flex;align-items:center;justify-content:center;transition:filter .25s}
 .project-graphic:hover{filter:brightness(.95)}
-.graphic-deepfake{background:#e9e4dc}.graphic-market{background:#dfe7e2}.graphic-rovan{background:#e5e7e3}.graphic-automoto{background:#ede3d7}.graphic-ashok{background:#dfdfd7}
+.graphic-deepfake{background:#e9e4dc}.graphic-market{background:#dfe7e2}.graphic-rovan{background:#e5e7e3}.graphic-automoto{background:#ede3d7}
 .project-graphic::before{content:"";position:absolute;inset:26px;border:1px solid #64737175;transform:rotate(-7deg)}
 .project-graphic::after{content:"";position:absolute;width:56%;aspect-ratio:1;border:1px solid #8891888f;border-radius:50%;transform:translate(28%,12%)}
 .graphic-meta,.graphic-base{position:absolute;left:18px;right:18px;z-index:2;color:#53635f;font:500 9px/1.5 var(--mono);letter-spacing:.04em}
@@ -207,7 +207,7 @@ a,button{touch-action:manipulation}
 
 
 /* CLASSIC MARKED-ELEMENT MOTION — soft movement on the hero RC artwork,
-   five project monograms and the "Honest about the process" heading.
+   four project monograms and the "Honest about the process" heading.
    Restrained, transform-only effects: no glow, no canvas, no dependencies. */
 @media (prefers-reduced-motion:no-preference) {
   /* Hero: very slow opposing movement and a gently turning outline. */
@@ -244,7 +244,6 @@ a,button{touch-action:manipulation}
   .project-item:nth-child(2) .project-graphic{--float-duration:8.2s;--float-delay:-2s}
   .project-item:nth-child(3) .project-graphic{--float-duration:6.6s;--float-delay:-3s}
   .project-item:nth-child(4) .project-graphic{--float-duration:8.8s;--float-delay:-1s}
-  .project-item:nth-child(5) .project-graphic{--float-duration:7.7s;--float-delay:-4s}
   @keyframes classic-symbol-float{
     0%,100%{transform:translate3d(0,0,0) rotate(-1deg)}
     50%{transform:translate3d(0,-7px,0) rotate(1.5deg)}
